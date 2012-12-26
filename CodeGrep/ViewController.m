@@ -52,7 +52,9 @@
 {
     if ( [segue.identifier isEqualToString:@"showSearchResult"] )
     {
-        [segue.destinationViewController initWithSearchString:self.searchText.text];
+        NSString * search = [self.searchText.text stringByReplacingOccurrencesOfString:@" " withString:@"+" ];
+        [segue.destinationViewController initWithSearchString:search];
+        
     }
 }
 

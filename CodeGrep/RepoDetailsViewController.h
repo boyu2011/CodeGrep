@@ -11,6 +11,7 @@
 @interface RepoDetailsViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UITextView *readmeTextView;
+
 - (void)initWithOwnerAndRepoName:(NSString *)ownerAndRepoName;
 
 @end

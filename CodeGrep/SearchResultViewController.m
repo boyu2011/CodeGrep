@@ -89,8 +89,14 @@
     NSString * repoName = [repo valueForKey:@"name"];
     NSString * ownerAndRepoName = [NSString stringWithFormat:@"%@/%@", owner, repoName];
     cell.textLabel.text = ownerAndRepoName;
-    cell.detailTextLabel.text = [repo valueForKey:@"description"];
-    
+    if ( [repo valueForKey:@"description"] != [NSNull null] )
+        cell.detailTextLabel.text = [repo valueForKey:@"description"];
+    /*
+    cell.detailTextLabel.text =
+    [NSString stringWithFormat:@"watchers: %@    forks: %@",
+     [repo valueForKey:@"watchers"],
+     [repo valueForKey:@"forks"]];
+    */
     return cell;
 }
 
