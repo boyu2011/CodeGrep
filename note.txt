@@ -1,0 +1,29 @@
+note
+
+
+$ curl https://api.github.com/legacy/repos/search/ruby
+
+
+$ curl https://api.github.com/repos/boyu2011/iCode/readme
+{
+  "type": "file",
+  "_links": {
+    "git": "https://api.github.com/repos/boyu2011/iCode/git/blobs/d54c5830f2df4851424f5e3d267378a745b81f00",
+    "html": "https://github.com/boyu2011/iCode/blob/master/README.md",
+    "self": "https://api.github.com/repos/boyu2011/iCode/contents/README.md"
+  },
+  "path": "README.md",
+  "html_url": "https://github.com/boyu2011/iCode/blob/master/README.md",
+  "git_url": "https://api.github.com/repos/boyu2011/iCode/git/blobs/d54c5830f2df4851424f5e3d267378a745b81f00",
+  "url": "https://api.github.com/repos/boyu2011/iCode/contents/README.md",
+  "content": "QW4gYXdlc29tZSBHaXRIdWIgQXBwIGZvciBpUGhvbmUuCgpEZXZlbG9wZXI6\nIEJvWXUK\n",
+  "sha": "d54c5830f2df4851424f5e3d267378a745b81f00",
+  "size": 51,
+  "encoding": "base64",
+  "name": "README.md"
+}
+
+
+$ curl https://raw.github.com/ajaxorg/cloud9/master/README.md
+
+
