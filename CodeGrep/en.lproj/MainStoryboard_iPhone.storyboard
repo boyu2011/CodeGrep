@@ -126,6 +126,9 @@
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="69g-7F-xpM">
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="386" id="WIo-5J-hfF"/>
+                                        </constraints>
                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                         <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -157,16 +160,15 @@
                                     </label>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="69g-7F-xpM" secondAttribute="bottom" constant="119" id="8y1-b9-Nwz"/>
-                                    <constraint firstItem="69g-7F-xpM" firstAttribute="top" secondItem="ua8-tP-y1s" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="HKX-CG-jpE"/>
                                     <constraint firstAttribute="trailing" secondItem="bnl-YB-o0a" secondAttribute="trailing" constant="27" id="J7M-I2-prq"/>
                                     <constraint firstItem="bnl-YB-o0a" firstAttribute="top" secondItem="fvy-du-eOI" secondAttribute="top" constant="20" symbolic="YES" type="default" id="L6b-Dd-1hA"/>
+                                    <constraint firstItem="69g-7F-xpM" firstAttribute="top" secondItem="fvy-du-eOI" secondAttribute="top" constant="132" id="L6t-jp-DMc"/>
                                     <constraint firstItem="ua8-tP-y1s" firstAttribute="leading" secondItem="69g-7F-xpM" secondAttribute="leading" type="default" id="LBt-g9-8sE"/>
                                     <constraint firstItem="bnl-YB-o0a" firstAttribute="centerX" secondItem="fvy-du-eOI" secondAttribute="centerX" type="default" id="NaA-Qm-MlE"/>
+                                    <constraint firstAttribute="bottom" secondItem="69g-7F-xpM" secondAttribute="bottom" constant="129" id="OS4-8W-sjR"/>
                                     <constraint firstItem="ua8-tP-y1s" firstAttribute="leading" secondItem="bnl-YB-o0a" secondAttribute="leading" type="default" id="RVZ-jl-s3A"/>
                                     <constraint firstItem="ua8-tP-y1s" firstAttribute="top" secondItem="bnl-YB-o0a" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="Rir-EE-d0n"/>
                                     <constraint firstItem="69g-7F-xpM" firstAttribute="trailing" secondItem="ua8-tP-y1s" secondAttribute="trailing" type="default" id="Y0z-dt-NZY"/>
-                                    <constraint firstItem="69g-7F-xpM" firstAttribute="centerY" secondItem="fvy-du-eOI" secondAttribute="centerY" type="default" id="wwz-wk-Egm"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
@@ -223,6 +225,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="ImA-8i-58Q" kind="push" identifier="showWebPage" id="7De-6O-i2d"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -248,6 +253,37 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0iU-z5-wtS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1331" y="-1482"/>
+        </scene>
+        <!--Web View Controller-->
+        <scene sceneID="loD-xu-orr">
+            <objects>
+                <viewController id="ImA-8i-58Q" customClass="WebViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="LB3-rn-xfw">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <webView multipleTouchEnabled="YES" contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7sC-1E-6A2">
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="504" id="0Ga-sK-aON"/>
+                                </constraints>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="7sC-1E-6A2" firstAttribute="top" secondItem="LB3-rn-xfw" secondAttribute="top" constant="-5" id="3Ty-Ns-Kmz"/>
+                            <constraint firstItem="7sC-1E-6A2" firstAttribute="trailing" secondItem="LB3-rn-xfw" secondAttribute="trailing" type="default" id="KzL-SK-NzH"/>
+                            <constraint firstItem="7sC-1E-6A2" firstAttribute="leading" secondItem="LB3-rn-xfw" secondAttribute="leading" type="default" id="iwf-yj-Aa5"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="5Um-gh-auG"/>
+                    <connections>
+                        <outlet property="webView" destination="7sC-1E-6A2" id="CeF-0t-Lkr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yps-8j-1mF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1946" y="-1484"/>
         </scene>
         <!--Repo Web View Controller-->
         <scene sceneID="gES-5Y-v8r">
@@ -306,6 +342,7 @@
             <relationships>
                 <relationship kind="outlet" name="ownerInfoBtn" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="readmeTextView" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="readmeWebView" candidateClass="UIWebView"/>
                 <relationship kind="outlet" name="repoInfoLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
@@ -329,9 +366,14 @@
         <class className="ViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
             <relationships>
-                <relationship kind="action" name="doSearch:"/>
                 <relationship kind="outlet" name="searchButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="searchText" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="WebViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/WebViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
             </relationships>
         </class>
     </classes>

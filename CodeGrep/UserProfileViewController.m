@@ -8,6 +8,7 @@
 
 #import "UserProfileViewController.h"
 #import "JSONKit/JSONKit.h"
+#import "WebViewController.h"
 
 @interface UserProfileViewController ()
 
@@ -68,7 +69,14 @@
             self.blog = [user objectForKey:@"blog"];
     }
     self.location = [user objectForKey:@"location"];
-    
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ( [segue.identifier isEqualToString:@"showWebPage"] )
+    {
+        [segue.destinationViewController initWithUrlString:self.blogBtn.titleLabel.text];
+    }
 }
 
 - (void)viewDidLoad
