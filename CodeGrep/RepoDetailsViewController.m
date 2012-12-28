@@ -8,12 +8,19 @@
 
 #import "RepoDetailsViewController.h"
 #import "JSONKit/JSONKit.h"
+#import "UserProfileViewController.h"
 
 @interface RepoDetailsViewController ()
 
-@property(weak, nonatomic) NSString * ownerAndRepo;
+@property(strong, nonatomic) NSString * ownerAndRepo;
 @property(strong, nonatomic) NSString * readmeContent;
-@property(weak, nonatomic) NSString * watchersAndForks;
+@property(strong, nonatomic) NSString * watchersAndForks;
+@property(strong, nonatomic) NSString * desc;
+@property(retain, nonatomic) NSString * owner;
+
+@property (weak, nonatomic) IBOutlet UILabel *repoInfoLabel;
+
+@property (weak, nonatomic) IBOutlet UIButton *ownerInfoBtn;
 
 @end
 
@@ -23,6 +30,10 @@
 @synthesize readmeContent;
 @synthesize ownerAndRepo;
 @synthesize watchersAndForks;
+@synthesize desc;
+@synthesize owner;
+@synthesize repoInfoLabel;
+@synthesize ownerInfoBtn;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -65,8 +76,9 @@
     
     // assign content to a var for display later.
     self.readmeContent = r;
-    //NSLog(self.readmeContent);
     self.ownerAndRepo = ownerAndRepoName;
+    
+    self.owner = [[self.ownerAndRepo componentsSeparatedByString:@"/"] objectAtIndex:0];
     
     //
     // get repo details info
@@ -79,6 +91,10 @@
     self.watchersAndForks = [NSString stringWithFormat:@"Watchers: %@    Forks: %@",
                              [repo valueForKey:@"watchers"],
                              [repo valueForKey:@"forks"]];
+    if ( [repo valueForKey:@"description"] != [NSNull null] )
+        self.desc = [repo valueForKey:@"description"];
+    else
+        self.desc = @"\n";
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -86,6 +102,10 @@
     if ( [segue.identifier isEqualToString:@"showRepoOnWeb"] )
     {
         [segue.destinationViewController initWithOwnerAndRepoName:self.ownerAndRepo];
+    }
+    else if ( [segue.identifier isEqualToString:@"showUserProfile"] )
+    {
+        [segue.destinationViewController initWithOwner:self.owner];
     }
 }
 
@@ -98,12 +118,14 @@
     // show repo details on the screen
     //
     
-    NSString * summaryString = [NSString stringWithFormat:@"%@\n%@\n\n%@",
+    NSString * repoLabel = [NSString stringWithFormat:@"%@\r\n%@",
                                 self.ownerAndRepo,
-                                self.watchersAndForks,
-                                self.readmeContent];
+                                self.watchersAndForks];
+    [self.repoInfoLabel setText:repoLabel];
     
-    [self.readmeTextView setText:summaryString];
+    [self.readmeTextView setText:self.readmeContent];
+    
+    [self.ownerInfoBtn setTitle:[NSString stringWithFormat:@"Owner: %@", self.owner] forState:UIControlStateNormal];
 }
 
 - (void)didReceiveMemoryWarning

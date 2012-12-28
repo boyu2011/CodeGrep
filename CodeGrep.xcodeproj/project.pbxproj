@@ -34,6 +34,7 @@
 		41D32D0F168ABCA6008AB3D8 /* README in Resources */ = {isa = PBXBuildFile; fileRef = 41D32D0E168ABCA6008AB3D8 /* README */; };
 		41D32D19168BB1D4008AB3D8 /* mars.png in Resources */ = {isa = PBXBuildFile; fileRef = 41D32D18168BB1D3008AB3D8 /* mars.png */; };
 		41D32D1B168BB23D008AB3D8 /* mars@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 41D32D1A168BB23D008AB3D8 /* mars@2x.png */; };
+		41D32D32168D0550008AB3D8 /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41D32D31168D054F008AB3D8 /* UserProfileViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +85,8 @@
 		41D32D0E168ABCA6008AB3D8 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		41D32D18168BB1D3008AB3D8 /* mars.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mars.png; sourceTree = "<group>"; };
 		41D32D1A168BB23D008AB3D8 /* mars@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mars@2x.png"; sourceTree = "<group>"; };
+		41D32D30168D054F008AB3D8 /* UserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileViewController.h; sourceTree = "<group>"; };
+		41D32D31168D054F008AB3D8 /* UserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +154,8 @@
 				41AEADBF168A1E270097FE06 /* AppDelegate.h */,
 				41AEADC0168A1E270097FE06 /* AppDelegate.m */,
 				41AEADC8168A1E270097FE06 /* MainStoryboard_iPhone.storyboard */,
+				41D32D30168D054F008AB3D8 /* UserProfileViewController.h */,
+				41D32D31168D054F008AB3D8 /* UserProfileViewController.m */,
 				41D32D05168A9E4C008AB3D8 /* RepoDetailsViewController.h */,
 				41D32D06168A9E4C008AB3D8 /* RepoDetailsViewController.m */,
 				41D32D0B168AB316008AB3D8 /* RepoWebViewController.h */,
@@ -333,6 +338,7 @@
 				41D32D01168A60F5008AB3D8 /* JSONKit.m in Sources */,
 				41D32D07168A9E4C008AB3D8 /* RepoDetailsViewController.m in Sources */,
 				41D32D0D168AB316008AB3D8 /* RepoWebViewController.m in Sources */,
+				41D32D32168D0550008AB3D8 /* UserProfileViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
