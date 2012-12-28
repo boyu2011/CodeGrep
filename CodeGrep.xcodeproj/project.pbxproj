@@ -90,6 +90,7 @@
 		41D32D31168D054F008AB3D8 /* UserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileViewController.m; sourceTree = "<group>"; };
 		41D32D37168D1ECC008AB3D8 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		41D32D38168D1ECC008AB3D8 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
+		41D32DC5168E122D008AB3D8 /* DEFINE.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEFINE.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +172,7 @@
 				41AEADCE168A1E270097FE06 /* ViewController.h */,
 				41AEADCF168A1E270097FE06 /* ViewController.m */,
 				41AEADB7168A1E270097FE06 /* Supporting Files */,
+				41D32DC5168E122D008AB3D8 /* DEFINE.h */,
 			);
 			path = CodeGrep;
 			sourceTree = "<group>";

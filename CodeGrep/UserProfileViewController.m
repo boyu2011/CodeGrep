@@ -9,6 +9,7 @@
 #import "UserProfileViewController.h"
 #import "JSONKit/JSONKit.h"
 #import "WebViewController.h"
+#import "DEFINE.h"
 
 @interface UserProfileViewController ()
 
@@ -52,7 +53,7 @@
     // get user information
     //
     
-    self.urlString = [NSString stringWithFormat:@"https://api.github.com/users/%@", ownerString];
+    self.urlString = [NSString stringWithFormat:@"https://api.github.com/users/%@%@", ownerString, UNAUTH_CALL_HIGHER_RATE];
     self.url = [NSURL URLWithString:self.urlString];
     self.data = [NSData dataWithContentsOfURL:self.url];
     self.jsonDecoder = [[JSONDecoder alloc] initWithParseOptions:JKParseOptionNone];

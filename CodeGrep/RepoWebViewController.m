@@ -7,6 +7,7 @@
 //
 
 #import "RepoWebViewController.h"
+#import "DEFINE.h"
 
 @interface RepoWebViewController ()
 
@@ -35,7 +36,7 @@
     // construct a request for browsering.
     //
     
-    NSString * repoURLString = [NSString stringWithFormat:@"https://github.com/%@", ownerAndRepoName];
+    NSString * repoURLString = [NSString stringWithFormat:@"https://github.com/%@%@", ownerAndRepoName, UNAUTH_CALL_HIGHER_RATE];
     self.url = [NSURL URLWithString:repoURLString];
     self.request = [NSURLRequest requestWithURL:self.url];
 }

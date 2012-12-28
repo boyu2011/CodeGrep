@@ -9,6 +9,7 @@
 #import "SearchResultViewController.h"
 #import "JSONKit/JSONKit.h"
 #import "RepoDetailsViewController.h"
+#import "DEFINE.h"
 
 @interface SearchResultViewController ()
 
@@ -36,7 +37,7 @@
     //
     
     NSString *theUrlString =
-        [NSString stringWithFormat:@"https://api.github.com/legacy/repos/search/%@", searchString];
+        [NSString stringWithFormat:@"https://api.github.com/legacy/repos/search/%@%@", searchString, UNAUTH_CALL_HIGHER_RATE];
     NSURL *url = [NSURL URLWithString:theUrlString];
     NSData *data = [NSData dataWithContentsOfURL:url];    
     JSONDecoder * jsonDecoder = [[JSONDecoder alloc] initWithParseOptions:JKParseOptionNone];

@@ -9,6 +9,7 @@
 #import "RepoDetailsViewController.h"
 #import "JSONKit/JSONKit.h"
 #import "UserProfileViewController.h"
+#import "DEFINE.h"
 
 @interface RepoDetailsViewController ()
 
@@ -17,10 +18,9 @@
 @property(strong, nonatomic) NSString * watchersAndForks;
 @property(strong, nonatomic) NSString * desc;
 @property(retain, nonatomic) NSString * owner;
-
 @property (weak, nonatomic) IBOutlet UILabel *repoInfoLabel;
-
 @property (weak, nonatomic) IBOutlet UIButton *ownerInfoBtn;
+@property (weak, nonatomic) IBOutlet UITextView *readmeTextView;
 
 @end
 
@@ -54,7 +54,7 @@
     //
     
     NSMutableString *theUrlString =
-    [NSString stringWithFormat:@"https://api.github.com/repos/%@/readme", ownerAndRepoName];
+    [NSString stringWithFormat:@"https://api.github.com/repos/%@/readme%@", ownerAndRepoName, UNAUTH_CALL_HIGHER_RATE];
     NSURL *url = [NSURL URLWithString:theUrlString];
     NSMutableData *data = [NSData dataWithContentsOfURL:url];
     JSONDecoder * jsonDecoder = [[JSONDecoder alloc]initWithParseOptions:JKParseOptionNone];
@@ -68,8 +68,8 @@
     // $ curl https://raw.github.com/ajaxorg/cloud9/master/README.md
     //
     
-    theUrlString = [NSString stringWithFormat:@"https://raw.github.com/%@/master/%@",
-                    ownerAndRepoName, readmePath];
+    theUrlString = [NSString stringWithFormat:@"https://raw.github.com/%@/master/%@%@",
+                    ownerAndRepoName, readmePath, UNAUTH_CALL_HIGHER_RATE];
     url = [NSURL URLWithString:theUrlString];
     data = [NSData dataWithContentsOfURL:url];
     NSString * r = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:NULL];
@@ -84,7 +84,7 @@
     // get repo details info
     //
     
-    theUrlString = [NSString stringWithFormat:@"https://api.github.com/repos/%@", ownerAndRepo];
+    theUrlString = [NSString stringWithFormat:@"https://api.github.com/repos/%@%@", ownerAndRepo, UNAUTH_CALL_HIGHER_RATE];
     url = [NSURL URLWithString:theUrlString];
     data = [NSData dataWithContentsOfURL:url];
     NSDictionary * repo = [jsonDecoder objectWithData:data];
