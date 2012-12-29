@@ -36,6 +36,7 @@
 		41D32D1B168BB23D008AB3D8 /* mars@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 41D32D1A168BB23D008AB3D8 /* mars@2x.png */; };
 		41D32D32168D0550008AB3D8 /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41D32D31168D054F008AB3D8 /* UserProfileViewController.m */; };
 		41D32D39168D1ECC008AB3D8 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41D32D38168D1ECC008AB3D8 /* WebViewController.m */; };
+		41D32DC9168E8E77008AB3D8 /* RepoDetailsViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 41D32DC8168E8E76008AB3D8 /* RepoDetailsViewController2.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +92,8 @@
 		41D32D37168D1ECC008AB3D8 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		41D32D38168D1ECC008AB3D8 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		41D32DC5168E122D008AB3D8 /* DEFINE.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEFINE.h; sourceTree = "<group>"; };
+		41D32DC7168E8E76008AB3D8 /* RepoDetailsViewController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepoDetailsViewController2.h; sourceTree = "<group>"; };
+		41D32DC8168E8E76008AB3D8 /* RepoDetailsViewController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepoDetailsViewController2.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +167,8 @@
 				41D32D31168D054F008AB3D8 /* UserProfileViewController.m */,
 				41D32D05168A9E4C008AB3D8 /* RepoDetailsViewController.h */,
 				41D32D06168A9E4C008AB3D8 /* RepoDetailsViewController.m */,
+				41D32DC7168E8E76008AB3D8 /* RepoDetailsViewController2.h */,
+				41D32DC8168E8E76008AB3D8 /* RepoDetailsViewController2.m */,
 				41D32D0B168AB316008AB3D8 /* RepoWebViewController.h */,
 				41D32D0C168AB316008AB3D8 /* RepoWebViewController.m */,
 				41D32CF7168A3D59008AB3D8 /* SearchResultViewController.h */,
@@ -347,6 +352,7 @@
 				41D32D0D168AB316008AB3D8 /* RepoWebViewController.m in Sources */,
 				41D32D32168D0550008AB3D8 /* UserProfileViewController.m in Sources */,
 				41D32D39168D1ECC008AB3D8 /* WebViewController.m in Sources */,
+				41D32DC9168E8E77008AB3D8 /* RepoDetailsViewController2.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
