@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RepoDetailsViewController2 : UITableViewController
+@interface RepoProfileViewController : UITableViewController
 
 - (void)initWithOwnerAndRepoName:(NSString *)ownerAndRepoName;
 

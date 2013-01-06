@@ -1,39 +1,82 @@
 //
-//  RepoDetailsViewController2.m
+//  RepoDetailViewController.m
 //  CodeGrep
 //
-//  Created by Bo Yu on 12/28/12.
-//  Copyright (c) 2012 Bo Yu. All rights reserved.
+//  Created by Bo Yu on 1/4/13.
+//  Copyright (c) 2013 Bo Yu. All rights reserved.
 //
 
-#import "RepoDetailsViewController2.h"
+#import "RepoDetailViewController.h"
 #import "JSONKit/JSONKit.h"
-#import "UserProfileViewController.h"
 #import "DEFINE.h"
 
-@interface RepoDetailsViewController2 ()
+@interface RepoDetailViewController ()
 
+@property (weak, nonatomic) IBOutlet UITableView *repoAttrTableView;
 @property(nonatomic) JSONDecoder * jsonDecoder;
 @property(nonatomic) NSString * ownerAndRepo;
 @property(nonatomic) NSString * owner;
-@property(strong, nonatomic) NSMutableArray * repoAttrs;
+@property(strong, nonatomic) NSMutableArray * repoAttrArray;
 @property(nonatomic) NSString * urlString;
 @property(nonatomic) NSURL * url;
+@property(nonatomic) NSMutableURLRequest * urlRequest;
 @property(nonatomic) NSData * data;
-@property(nonatomic) NSString * readmeRawData;
 
 @end
 
-@implementation RepoDetailsViewController2
+@implementation RepoDetailViewController
 
+@synthesize repoAttrTableView;
 @synthesize jsonDecoder;
 @synthesize ownerAndRepo;
 @synthesize owner;
-@synthesize repoAttrs;
+@synthesize repoAttrArray;
 @synthesize urlString;
 @synthesize url;
+@synthesize urlRequest;
 @synthesize data;
-@synthesize readmeRawData;
+
+- (void)initWithOwnerAndRepoName:(NSString *)ownerAndRepoName
+{
+    self.ownerAndRepo = ownerAndRepoName;
+    self.owner = [[self.ownerAndRepo componentsSeparatedByString:@"/"] objectAtIndex:0];
+    
+    //
+    // get repo details
+    //
+    
+    self.jsonDecoder = [[JSONDecoder alloc]initWithParseOptions:JKParseOptionNone];
+    self.urlString = [NSString stringWithFormat:@"https://api.github.com/repos/%@%@", ownerAndRepoName, UNAUTH_CALL_HIGHER_RATE];
+    self.url = [NSURL URLWithString:self.urlString];
+    self.data = [NSData dataWithContentsOfURL:self.url];
+    NSDictionary * repoDict = [self.jsonDecoder objectWithData:self.data];
+    
+    //
+    // fill repo array which will be shown on the table view.
+    //
+    /*
+     self.repoAttrs = [NSMutableArray arrayWithObjects:[repoDict valueForKey:@"name"],
+     self.owner,
+     nil];
+     */
+    self.repoAttrArray = [NSMutableArray arrayWithObjects:
+                      [NSDictionary dictionaryWithObjectsAndKeys:
+                       @"Name", @"sectionTitle",
+                       [repoDict valueForKey:@"name"], @"attrValue",
+                       nil],
+                      [NSDictionary dictionaryWithObjectsAndKeys:
+                       @"Description", @"sectionTitle",
+                       [repoDict valueForKey:@"description"], @"attrValue",
+                       nil],
+                      /*
+                       [NSDictionary dictionaryWithObjectsAndKeys:
+                       @"Owner",@"sectionTitle",
+                       self.owner, @"attrValue",
+                       nil],
+                       */
+                      nil];
+    
+}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -42,61 +85,6 @@
         // Custom initialization
     }
     return self;
-}
-
-//
-// Initialize the world...
-//
-
-- (void)initWithOwnerAndRepoName:(NSString *)ownerAndRepoName
-{
-    self.ownerAndRepo = ownerAndRepoName;
-    self.owner = [[self.ownerAndRepo componentsSeparatedByString:@"/"] objectAtIndex:0];
-    
-    //
-    // get repo details info
-    //
-    
-    self.jsonDecoder = [[JSONDecoder alloc]initWithParseOptions:JKParseOptionNone];
-    self.urlString = [NSString stringWithFormat:@"https://api.github.com/repos/%@%@", ownerAndRepoName, UNAUTH_CALL_HIGHER_RATE];
-    self.url = [NSURL URLWithString:self.urlString];
-    self.data = [NSData dataWithContentsOfURL:self.url];    
-    NSDictionary * repoDict = [self.jsonDecoder objectWithData:self.data];
-    
-    //
-    // get readme path
-    //
-    // $ curl https://api.github.com/repos/boyu2011/iCode/readme
-    //
-    
-    self.urlString = [NSString stringWithFormat:@"https://api.github.com/repos/%@/readme%@", self.ownerAndRepo, UNAUTH_CALL_HIGHER_RATE];
-    self.url = [NSURL URLWithString:self.urlString];
-    self.data = [NSData dataWithContentsOfURL:self.url];
-    NSDictionary * readme = [self.jsonDecoder objectWithData:self.data];
-    NSString * readmePath = [readme valueForKey:@"path"];
-    
-    //
-    // get readme raw data
-    //
-    // $ curl https://raw.github.com/ajaxorg/cloud9/master/README.md
-    //
-    
-    self.urlString = [NSString stringWithFormat:@"https://raw.github.com/%@/master/%@%@",
-                    self.ownerAndRepo, readmePath, UNAUTH_CALL_HIGHER_RATE];
-    self.url = [NSURL URLWithString:self.urlString];
-    NSString * readmeRaw = [NSString stringWithContentsOfURL:self.url encoding:NSUTF8StringEncoding error:NULL];
-    self.readmeRawData = readmeRaw;
-    
-    //
-    // fill repo array
-    //
-    
-    self.repoAttrs = [NSMutableArray arrayWithObjects:[repoDict valueForKey:@"name"],
-                                                      [repoDict valueForKey:@"description"],
-                                                      [repoDict valueForKey:@"html_url"],
-                                                      self.owner,
-                                                      nil];
-    
 }
 
 - (void)viewDidLoad
@@ -110,18 +98,6 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ( [segue.identifier isEqualToString:@"showRepoOnWeb"] )
-    {
-        [segue.destinationViewController initWithOwnerAndRepoName:self.ownerAndRepo];
-    }
-    else if ( [segue.identifier isEqualToString:@"showUserProfile"] )
-    {
-        [segue.destinationViewController initWithOwner:self.owner];
-    }
-}
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -132,22 +108,22 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [self.repoAttrs count];
+    // Return the number of sections.
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    // Return the number of rows in the section.
     return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"repoAttr";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    static NSString *CellIdentifier = @"RepoCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     // Configure the cell...
-    if ( [self.repoAttrs objectAtIndex:indexPath.section] != [NSNull null] )
-        cell.textLabel.text = [self.repoAttrs objectAtIndex:indexPath.section];
     
     return cell;
 }
@@ -202,10 +178,6 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
-    
-    UITableViewCell *selectedCell = [tableView cellForRowAtIndexPath:indexPath];
-    if ( [selectedCell.textLabel.text isEqualToString:self.owner] )
-        [self performSegueWithIdentifier:@"showUserProfile" sender:self];
 }
 
 @end

@@ -29,14 +29,15 @@
 		41D32D01168A60F5008AB3D8 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 41D32CFE168A60F5008AB3D8 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		41D32D02168A60F5008AB3D8 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 41D32CFF168A60F5008AB3D8 /* README.md */; };
 		41D32D04168A9538008AB3D8 /* note.txt in Resources */ = {isa = PBXBuildFile; fileRef = 41D32D03168A9538008AB3D8 /* note.txt */; };
-		41D32D07168A9E4C008AB3D8 /* RepoDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41D32D06168A9E4C008AB3D8 /* RepoDetailsViewController.m */; };
 		41D32D0D168AB316008AB3D8 /* RepoWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41D32D0C168AB316008AB3D8 /* RepoWebViewController.m */; };
 		41D32D0F168ABCA6008AB3D8 /* README in Resources */ = {isa = PBXBuildFile; fileRef = 41D32D0E168ABCA6008AB3D8 /* README */; };
 		41D32D19168BB1D4008AB3D8 /* mars.png in Resources */ = {isa = PBXBuildFile; fileRef = 41D32D18168BB1D3008AB3D8 /* mars.png */; };
 		41D32D1B168BB23D008AB3D8 /* mars@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 41D32D1A168BB23D008AB3D8 /* mars@2x.png */; };
 		41D32D32168D0550008AB3D8 /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41D32D31168D054F008AB3D8 /* UserProfileViewController.m */; };
 		41D32D39168D1ECC008AB3D8 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41D32D38168D1ECC008AB3D8 /* WebViewController.m */; };
-		41D32DC9168E8E77008AB3D8 /* RepoDetailsViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 41D32DC8168E8E76008AB3D8 /* RepoDetailsViewController2.m */; };
+		41D32DC9168E8E77008AB3D8 /* RepoProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41D32DC8168E8E76008AB3D8 /* RepoProfileViewController.m */; };
+		AA2FD80B1697793C00FA2168 /* RepoDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA2FD80A1697793C00FA2168 /* RepoDetailViewController.m */; };
+		AA2FD813169780EE00FA2168 /* RepoReadMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA2FD812169780EE00FA2168 /* RepoReadMeViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,8 +81,6 @@
 		41D32CFE168A60F5008AB3D8 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		41D32CFF168A60F5008AB3D8 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		41D32D03168A9538008AB3D8 /* note.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = note.txt; sourceTree = "<group>"; };
-		41D32D05168A9E4C008AB3D8 /* RepoDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepoDetailsViewController.h; sourceTree = "<group>"; };
-		41D32D06168A9E4C008AB3D8 /* RepoDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepoDetailsViewController.m; sourceTree = "<group>"; };
 		41D32D0B168AB316008AB3D8 /* RepoWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepoWebViewController.h; sourceTree = "<group>"; };
 		41D32D0C168AB316008AB3D8 /* RepoWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepoWebViewController.m; sourceTree = "<group>"; };
 		41D32D0E168ABCA6008AB3D8 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
@@ -92,8 +91,12 @@
 		41D32D37168D1ECC008AB3D8 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		41D32D38168D1ECC008AB3D8 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		41D32DC5168E122D008AB3D8 /* DEFINE.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEFINE.h; sourceTree = "<group>"; };
-		41D32DC7168E8E76008AB3D8 /* RepoDetailsViewController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepoDetailsViewController2.h; sourceTree = "<group>"; };
-		41D32DC8168E8E76008AB3D8 /* RepoDetailsViewController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepoDetailsViewController2.m; sourceTree = "<group>"; };
+		41D32DC7168E8E76008AB3D8 /* RepoProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepoProfileViewController.h; sourceTree = "<group>"; };
+		41D32DC8168E8E76008AB3D8 /* RepoProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepoProfileViewController.m; sourceTree = "<group>"; };
+		AA2FD8091697793C00FA2168 /* RepoDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepoDetailViewController.h; sourceTree = "<group>"; };
+		AA2FD80A1697793C00FA2168 /* RepoDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepoDetailViewController.m; sourceTree = "<group>"; };
+		AA2FD811169780EE00FA2168 /* RepoReadMeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepoReadMeViewController.h; sourceTree = "<group>"; };
+		AA2FD812169780EE00FA2168 /* RepoReadMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepoReadMeViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,14 +164,16 @@
 				41AEADBF168A1E270097FE06 /* AppDelegate.h */,
 				41AEADC0168A1E270097FE06 /* AppDelegate.m */,
 				41AEADC8168A1E270097FE06 /* MainStoryboard_iPhone.storyboard */,
+				AA2FD811169780EE00FA2168 /* RepoReadMeViewController.h */,
+				AA2FD812169780EE00FA2168 /* RepoReadMeViewController.m */,
 				41D32D37168D1ECC008AB3D8 /* WebViewController.h */,
 				41D32D38168D1ECC008AB3D8 /* WebViewController.m */,
 				41D32D30168D054F008AB3D8 /* UserProfileViewController.h */,
 				41D32D31168D054F008AB3D8 /* UserProfileViewController.m */,
-				41D32D05168A9E4C008AB3D8 /* RepoDetailsViewController.h */,
-				41D32D06168A9E4C008AB3D8 /* RepoDetailsViewController.m */,
-				41D32DC7168E8E76008AB3D8 /* RepoDetailsViewController2.h */,
-				41D32DC8168E8E76008AB3D8 /* RepoDetailsViewController2.m */,
+				AA2FD8091697793C00FA2168 /* RepoDetailViewController.h */,
+				AA2FD80A1697793C00FA2168 /* RepoDetailViewController.m */,
+				41D32DC7168E8E76008AB3D8 /* RepoProfileViewController.h */,
+				41D32DC8168E8E76008AB3D8 /* RepoProfileViewController.m */,
 				41D32D0B168AB316008AB3D8 /* RepoWebViewController.h */,
 				41D32D0C168AB316008AB3D8 /* RepoWebViewController.m */,
 				41D32CF7168A3D59008AB3D8 /* SearchResultViewController.h */,
@@ -348,11 +353,12 @@
 				41AEADD0168A1E270097FE06 /* ViewController.m in Sources */,
 				41D32CF9168A3D59008AB3D8 /* SearchResultViewController.m in Sources */,
 				41D32D01168A60F5008AB3D8 /* JSONKit.m in Sources */,
-				41D32D07168A9E4C008AB3D8 /* RepoDetailsViewController.m in Sources */,
 				41D32D0D168AB316008AB3D8 /* RepoWebViewController.m in Sources */,
 				41D32D32168D0550008AB3D8 /* UserProfileViewController.m in Sources */,
 				41D32D39168D1ECC008AB3D8 /* WebViewController.m in Sources */,
-				41D32DC9168E8E77008AB3D8 /* RepoDetailsViewController2.m in Sources */,
+				41D32DC9168E8E77008AB3D8 /* RepoProfileViewController.m in Sources */,
+				AA2FD80B1697793C00FA2168 /* RepoDetailViewController.m in Sources */,
+				AA2FD813169780EE00FA2168 /* RepoReadMeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

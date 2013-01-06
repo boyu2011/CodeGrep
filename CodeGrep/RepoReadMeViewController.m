@@ -1,18 +1,27 @@
 //
-//  RepoDetailsViewController.m
+//  RepoReadMeViewController.m
 //  CodeGrep
 //
 //  Created by Bo Yu on 1/4/13.
 //  Copyright (c) 2013 Bo Yu. All rights reserved.
 //
 
-#import "RepoDetailsViewController.h"
+#import "RepoReadMeViewController.h"
 
-@interface RepoDetailsViewController ()
-
+@interface RepoReadMeViewController ()
+@property (weak, nonatomic) IBOutlet UITextView *readmeView;
+@property(nonatomic) NSString * rawData;
 @end
 
-@implementation RepoDetailsViewController
+@implementation RepoReadMeViewController
+
+@synthesize readmeView;
+@synthesize rawData;
+
+-(void) initWithReadMeRawData:(NSString *)readmeRawData
+{
+    self.rawData = readmeRawData;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,6 +36,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    self.readmeView.text = self.rawData;
 }
 
 - (void)didReceiveMemoryWarning

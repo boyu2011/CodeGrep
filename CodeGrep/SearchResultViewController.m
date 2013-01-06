@@ -8,7 +8,7 @@
 
 #import "SearchResultViewController.h"
 #import "JSONKit/JSONKit.h"
-#import "RepoDetailsViewController.h"
+#import "RepoProfileViewController.h"
 #import "DEFINE.h"
 
 @interface SearchResultViewController ()
