@@ -38,6 +38,7 @@
 		41D32DC9168E8E77008AB3D8 /* RepoProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41D32DC8168E8E76008AB3D8 /* RepoProfileViewController.m */; };
 		AA2FD80B1697793C00FA2168 /* RepoDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA2FD80A1697793C00FA2168 /* RepoDetailViewController.m */; };
 		AA2FD813169780EE00FA2168 /* RepoReadMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA2FD812169780EE00FA2168 /* RepoReadMeViewController.m */; };
+		AA2FD821169A1B9600FA2168 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA2FD820169A1B9600FA2168 /* Social.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +98,7 @@
 		AA2FD80A1697793C00FA2168 /* RepoDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepoDetailViewController.m; sourceTree = "<group>"; };
 		AA2FD811169780EE00FA2168 /* RepoReadMeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepoReadMeViewController.h; sourceTree = "<group>"; };
 		AA2FD812169780EE00FA2168 /* RepoReadMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepoReadMeViewController.m; sourceTree = "<group>"; };
+		AA2FD820169A1B9600FA2168 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA2FD821169A1B9600FA2168 /* Social.framework in Frameworks */,
 				41AEADB1168A1E270097FE06 /* UIKit.framework in Frameworks */,
 				41AEADB3168A1E270097FE06 /* Foundation.framework in Frameworks */,
 				41AEADB5168A1E270097FE06 /* CoreGraphics.framework in Frameworks */,
@@ -149,6 +152,7 @@
 		41AEADAF168A1E270097FE06 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AA2FD820169A1B9600FA2168 /* Social.framework */,
 				41AEADB0168A1E270097FE06 /* UIKit.framework */,
 				41AEADB2168A1E270097FE06 /* Foundation.framework */,
 				41AEADB4168A1E270097FE06 /* CoreGraphics.framework */,

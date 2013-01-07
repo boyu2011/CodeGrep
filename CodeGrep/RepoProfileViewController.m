@@ -11,6 +11,8 @@
 #import "UserProfileViewController.h"
 #import "RepoReadMeViewController.h"
 #import "RepoDetailViewController.h"
+#import <Social/Social.h>
+#import <Accounts/Accounts.h>
 #import "DEFINE.h"
 
 @interface RepoProfileViewController ()
@@ -19,13 +21,16 @@
 @property(nonatomic) NSString * ownerAndRepo;
 @property(nonatomic) NSString * owner;
 @property(nonatomic) NSString * forkAndWatcherString;
+@property(nonatomic) NSString * description;
 @property(strong, nonatomic) NSMutableArray * repoAttrs;
 @property(nonatomic) NSString * urlString;
 @property(nonatomic) NSURL * url;
 @property(nonatomic) NSMutableURLRequest * urlRequest;
 @property(nonatomic) NSData * data;
+@property(nonatomic) NSMutableData * readmeHtmlData;
 @property(nonatomic) NSString * readmeRawData;
 @property (weak, nonatomic) IBOutlet UITextView *readmeTextView;
+@property (weak, nonatomic) IBOutlet UIWebView *readmeWebView;
 
 @end
 
@@ -35,6 +40,7 @@
 @synthesize ownerAndRepo;
 @synthesize owner;
 @synthesize forkAndWatcherString;
+@synthesize description;
 @synthesize repoAttrs;
 @synthesize urlString;
 @synthesize url;
@@ -42,6 +48,56 @@
 @synthesize data;
 @synthesize readmeRawData;
 @synthesize readmeTextView;
+@synthesize readmeWebView;
+@synthesize readmeHtmlData;
+
+//
+// send a tweet.
+//
+
+- (IBAction)sendTweet:(id)sender
+{
+    //  Create an instance of the Tweet Sheet
+    SLComposeViewController *tweetSheet = [SLComposeViewController
+                                           composeViewControllerForServiceType:
+                                           SLServiceTypeTwitter];
+    
+    // Sets the completion handler.  Note that we don't know which thread the
+    // block will be called on, so we need to ensure that any UI updates occur
+    // on the main queue
+    tweetSheet.completionHandler = ^(SLComposeViewControllerResult result) {
+        switch(result) {
+            //  This means the user cancelled without sending the Tweet
+            case SLComposeViewControllerResultCancelled:
+                break;
+            //  This means the user hit 'Send'
+            case SLComposeViewControllerResultDone:
+                break;
+        }
+        
+        //  dismiss the Tweet Sheet
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self dismissViewControllerAnimated:YES completion:^{
+                NSLog(@"Tweet Sheet has been dismissed.");
+            }];
+        });
+    };
+        
+    //  Set the initial body of the Tweet
+    [tweetSheet setInitialText:[NSString stringWithFormat:@"%@: %@", self.ownerAndRepo, self.description]];
+    
+    //  Add an URL to the Tweet.  You can add multiple URLs.
+    if (![tweetSheet addURL:[NSURL URLWithString:[NSString stringWithFormat:@"github.com/%@", self.ownerAndRepo]]])
+    {
+        NSLog(@"Unable to add the URL!");
+    }
+    
+    //  Presents the Tweet Sheet to the user
+    [self presentViewController:tweetSheet animated:YES completion:^{
+        NSLog(@"Tweet sheet has been presented.");
+    }];
+    
+}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -101,12 +157,40 @@
     */
     
     //
+    // get readme with HTML format
+    //
+    
+    self.urlString = [NSString stringWithFormat:@"https://api.github.com/repos/%@/readme%@",
+                      self.ownerAndRepo, UNAUTH_CALL_HIGHER_RATE];
+    self.url = [NSURL URLWithString:self.urlString];
+    self.urlRequest = [[NSMutableURLRequest alloc] initWithURL:self.url];
+    NSMutableDictionary *headers = [[NSMutableDictionary alloc] initWithCapacity:2];
+    [headers setValue:@"application/vnd.github.v3.html+json" forKey:@"Accept"];
+    [self.urlRequest setAllHTTPHeaderFields:headers];
+                                    
+                                    
+    NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:self.urlRequest delegate:self];
+    if (theConnection)
+    {
+        // Create the NSMutableData to hold the received data.
+        // receivedData is an instance variable declared elsewhere.
+        //self.webData = [[NSMutableData data] retain];
+    }
+    else
+    {
+        // Inform the user that the connection failed.
+    }
+    [theConnection start];
+                                    
+                                    
+    //
     // fill repo array which will be shown on the table view.
     //
 
     self.forkAndWatcherString = [NSString stringWithFormat:@"Forks: %@    Watchers: %@",
                                  [repoDict valueForKey:@"forks"],
                                  [repoDict valueForKey:@"watchers"]];
+    self.description = [repoDict valueForKey:@"description"];
     
     self.repoAttrs = [NSMutableArray arrayWithObjects:
                         [NSDictionary dictionaryWithObjectsAndKeys:
@@ -132,7 +216,7 @@
                        */
                         nil];
     
-    
+
     /*
     NSLog([ [self.repoAttrs objectAtIndex:0] valueForKey:@"name"] );
     NSLog([[self.repoAttrs objectAtIndex:0] valueForKey:@"value"] );
@@ -289,6 +373,23 @@
     else if ( [selectedCell.textLabel.text isEqualToString:@"Name"] )
     */
     [self performSegueWithIdentifier:@"showRepoDetails" sender:self];
+}
+
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{    
+    self.readmeHtmlData = [[NSMutableData alloc] init];
+}
+
+-(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+    [self.readmeHtmlData appendData:data];
+}
+
+-(void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    NSString * readmeHtml = [[NSString alloc] initWithData:self.readmeHtmlData encoding:NSUTF8StringEncoding];
+    [self.readmeWebView loadHTMLString:readmeHtml baseURL:nil];
 }
 
 @end
