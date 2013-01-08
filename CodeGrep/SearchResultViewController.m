@@ -21,6 +21,26 @@
 
 @synthesize searchResultArray;
 
+//
+// Initialize the world...
+//
+
+- (void)initWithSearchString:(NSString *)searchString
+{
+    //
+    // Search repos from GitHub.
+    //
+    
+    NSString *theUrlString =
+        [NSString stringWithFormat:@"https://api.github.com/legacy/repos/search/%@%@",
+         searchString, UNAUTH_CALL_HIGHER_RATE];
+    NSURL *url = [NSURL URLWithString:theUrlString];
+    NSData *data = [NSData dataWithContentsOfURL:url];
+    JSONDecoder * jsonDecoder = [[JSONDecoder alloc] initWithParseOptions:JKParseOptionNone];
+    NSDictionary * repos = [jsonDecoder objectWithData:data];
+    self.searchResultArray = [repos valueForKey:@"repositories"];
+}
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -28,21 +48,6 @@
         // Custom initialization
     }
     return self;
-}
-
-- (void)initWithSearchString:(NSString *)searchString
-{
-    //
-    // do search
-    //
-    
-    NSString *theUrlString =
-        [NSString stringWithFormat:@"https://api.github.com/legacy/repos/search/%@%@", searchString, UNAUTH_CALL_HIGHER_RATE];
-    NSURL *url = [NSURL URLWithString:theUrlString];
-    NSData *data = [NSData dataWithContentsOfURL:url];    
-    JSONDecoder * jsonDecoder = [[JSONDecoder alloc] initWithParseOptions:JKParseOptionNone];
-    NSDictionary * repos = [jsonDecoder objectWithData:data];
-    self.searchResultArray = [repos valueForKey:@"repositories"];
 }
 
 - (void)viewDidLoad
@@ -92,6 +97,9 @@
     cell.textLabel.text = ownerAndRepoName;
     if ( [repo valueForKey:@"description"] != [NSNull null] )
         cell.detailTextLabel.text = [repo valueForKey:@"description"];
+    cell.textLabel.font = [UIFont systemFontOfSize:15];
+    cell.detailTextLabel.font = [UIFont systemFontOfSize:12];
+    
     /*
     cell.detailTextLabel.text =
     [NSString stringWithFormat:@"watchers: %@    forks: %@",
@@ -107,6 +115,7 @@
     {
         UITableViewCell *cell = (UITableViewCell *)sender;
         NSString * ownerAndRepoName = [[cell textLabel] text];
+        // Go to repo profile page.
         [segue.destinationViewController initWithOwnerAndRepoName:ownerAndRepoName];
     }
 }

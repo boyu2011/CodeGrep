@@ -1,5 +1,5 @@
 //
-//  RepoDetailsViewController2.m
+//  RepoProfileViewController.m
 //  CodeGrep
 //
 //  Created by Bo Yu on 12/28/12.
@@ -52,12 +52,12 @@
 @synthesize readmeHtmlData;
 
 //
-// send a tweet.
+// Tweet send button has been clicked.
 //
 
 - (IBAction)sendTweet:(id)sender
 {
-    //  Create an instance of the Tweet Sheet
+    // Create an instance of the Tweet Sheet.
     SLComposeViewController *tweetSheet = [SLComposeViewController
                                            composeViewControllerForServiceType:
                                            SLServiceTypeTwitter];
@@ -118,15 +118,41 @@
     self.owner = [[self.ownerAndRepo componentsSeparatedByString:@"/"] objectAtIndex:0];
     
     //
-    // get repo details info
+    // Get repo detail info.
     //
     
     self.jsonDecoder = [[JSONDecoder alloc]initWithParseOptions:JKParseOptionNone];
-    self.urlString = [NSString stringWithFormat:@"https://api.github.com/repos/%@%@", ownerAndRepoName, UNAUTH_CALL_HIGHER_RATE];
+    self.urlString = [NSString stringWithFormat:@"https://api.github.com/repos/%@%@",
+                      ownerAndRepoName, UNAUTH_CALL_HIGHER_RATE];
     self.url = [NSURL URLWithString:self.urlString];
     self.data = [NSData dataWithContentsOfURL:self.url];    
     NSDictionary * repoDict = [self.jsonDecoder objectWithData:self.data];
+
+    //
+    // get readme with HTML format
+    //
     
+    self.urlString = [NSString stringWithFormat:@"https://api.github.com/repos/%@/readme%@",
+                      self.ownerAndRepo, UNAUTH_CALL_HIGHER_RATE];
+    self.url = [NSURL URLWithString:self.urlString];
+    self.urlRequest = [[NSMutableURLRequest alloc] initWithURL:self.url];
+    NSMutableDictionary *headers = [[NSMutableDictionary alloc] initWithCapacity:2];
+    [headers setValue:@"application/vnd.github.v3.html+json" forKey:@"Accept"];
+    [self.urlRequest setAllHTTPHeaderFields:headers];
+                                    
+    NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:self.urlRequest delegate:self];
+    if (theConnection)
+    {
+        // Create the NSMutableData to hold the received data.
+        // receivedData is an instance variable declared elsewhere.
+        //self.webData = [[NSMutableData data] retain];
+    }
+    else
+    {
+        // Inform the user that the connection failed.
+    }
+    [theConnection start];
+/*
     //
     // get readme path
     //
@@ -146,51 +172,22 @@
     //
     
     self.urlString = [NSString stringWithFormat:@"https://raw.github.com/%@/master/%@%@",
-                    self.ownerAndRepo, readmePath, UNAUTH_CALL_HIGHER_RATE];
+                      self.ownerAndRepo, readmePath, UNAUTH_CALL_HIGHER_RATE];
     self.url = [NSURL URLWithString:self.urlString];
     NSString * readmeRaw = [NSString stringWithContentsOfURL:self.url encoding:NSUTF8StringEncoding error:NULL];
     self.readmeRawData = readmeRaw;
-    
-    /*
-    self.urlString = [NSString stringWithFormat:@"https://github.com/repos/%@/blob/master"]
-    [self.urlRequest setValue:@"application/vnd.github.full+html" forHTTPHeaderField:@"Accept"];
-    */
-    
+*/
     //
-    // get readme with HTML format
-    //
-    
-    self.urlString = [NSString stringWithFormat:@"https://api.github.com/repos/%@/readme%@",
-                      self.ownerAndRepo, UNAUTH_CALL_HIGHER_RATE];
-    self.url = [NSURL URLWithString:self.urlString];
-    self.urlRequest = [[NSMutableURLRequest alloc] initWithURL:self.url];
-    NSMutableDictionary *headers = [[NSMutableDictionary alloc] initWithCapacity:2];
-    [headers setValue:@"application/vnd.github.v3.html+json" forKey:@"Accept"];
-    [self.urlRequest setAllHTTPHeaderFields:headers];
-                                    
-                                    
-    NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:self.urlRequest delegate:self];
-    if (theConnection)
-    {
-        // Create the NSMutableData to hold the received data.
-        // receivedData is an instance variable declared elsewhere.
-        //self.webData = [[NSMutableData data] retain];
-    }
-    else
-    {
-        // Inform the user that the connection failed.
-    }
-    [theConnection start];
-                                    
-                                    
-    //
-    // fill repo array which will be shown on the table view.
+    // Filled repo array which will be shown on the table view.
     //
 
     self.forkAndWatcherString = [NSString stringWithFormat:@"Forks: %@    Watchers: %@",
                                  [repoDict valueForKey:@"forks"],
                                  [repoDict valueForKey:@"watchers"]];
-    self.description = [repoDict valueForKey:@"description"];
+    if ([repoDict valueForKey:@"description"] == [NSNull null])
+        self.description = @"";
+    else
+        self.description = [repoDict valueForKey:@"description"];
     
     self.repoAttrs = [NSMutableArray arrayWithObjects:
                         [NSDictionary dictionaryWithObjectsAndKeys:
@@ -215,20 +212,12 @@
                             nil],
                        */
                         nil];
-    
-
-    /*
-    NSLog([ [self.repoAttrs objectAtIndex:0] valueForKey:@"name"] );
-    NSLog([[self.repoAttrs objectAtIndex:0] valueForKey:@"value"] );
-     */
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    [self.readmeTextView setText: self.readmeRawData];
-
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -263,8 +252,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     //return [self.repoAttrs count];
@@ -288,15 +275,11 @@
     {
         cell.textLabel.text = [[self.repoAttrs objectAtIndex:indexPath.row]
                                valueForKey:@"sectionTitle"];
-        cell.detailTextLabel.text = [[self.repoAttrs objectAtIndex:indexPath.row] valueForKey:@"attrValue"];
-        
-        if ( [cell.textLabel.text isEqualToString:@"Description"] )
-        {
-            cell.userInteractionEnabled = NO;
-        }
-        
-        //cell.textLabel.numberOfLines = 10;
-        //cell.textLabel.font = [UIFont systemFontOfSize:14.0];
+        cell.detailTextLabel.text = [[self.repoAttrs objectAtIndex:indexPath.row]
+                                     valueForKey:@"attrValue"];
+        cell.userInteractionEnabled = NO;
+        cell.textLabel.font = [UIFont systemFontOfSize:15.0];
+        cell.detailTextLabel.font = [UIFont systemFontOfSize:13.0];
     }
     
     return cell;
@@ -385,6 +368,10 @@
 {
     [self.readmeHtmlData appendData:data];
 }
+
+//
+// Get README with HTML format.
+//
 
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {

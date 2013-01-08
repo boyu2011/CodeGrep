@@ -14,14 +14,13 @@
 		<dict>
 			<key>CFBundleIconFiles</key>
 			<array>
-				<string>mars.png</string>
-				<string>mars-retina.png</string>
-				<string>mars@2x.png</string>
+				<string>nasa-mars.png</string>
+				<string>nasa-mars@2x.png</string>
 			</array>
 		</dict>
 	</dict>
 	<key>CFBundleIdentifier</key>
-	<string>BoYu.${PRODUCT_NAME:rfc1034identifier}</string>
+	<string>boyu-${PRODUCT_NAME:rfc1034identifier}</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>

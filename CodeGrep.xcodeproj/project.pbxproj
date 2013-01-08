@@ -39,6 +39,10 @@
 		AA2FD80B1697793C00FA2168 /* RepoDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA2FD80A1697793C00FA2168 /* RepoDetailViewController.m */; };
 		AA2FD813169780EE00FA2168 /* RepoReadMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA2FD812169780EE00FA2168 /* RepoReadMeViewController.m */; };
 		AA2FD821169A1B9600FA2168 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA2FD820169A1B9600FA2168 /* Social.framework */; };
+		AA2FD823169BD39B00FA2168 /* marsglobe.png in Resources */ = {isa = PBXBuildFile; fileRef = AA2FD822169BD39A00FA2168 /* marsglobe.png */; };
+		AA2FD825169BD3DF00FA2168 /* marsglobe2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AA2FD824169BD3DF00FA2168 /* marsglobe2x.png */; };
+		AA2FD828169BD59E00FA2168 /* nasa-mars.png in Resources */ = {isa = PBXBuildFile; fileRef = AA2FD826169BD59E00FA2168 /* nasa-mars.png */; };
+		AA2FD829169BD59E00FA2168 /* nasa-mars@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AA2FD827169BD59E00FA2168 /* nasa-mars@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +103,10 @@
 		AA2FD811169780EE00FA2168 /* RepoReadMeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepoReadMeViewController.h; sourceTree = "<group>"; };
 		AA2FD812169780EE00FA2168 /* RepoReadMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepoReadMeViewController.m; sourceTree = "<group>"; };
 		AA2FD820169A1B9600FA2168 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		AA2FD822169BD39A00FA2168 /* marsglobe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = marsglobe.png; sourceTree = "<group>"; };
+		AA2FD824169BD3DF00FA2168 /* marsglobe2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = marsglobe2x.png; sourceTree = "<group>"; };
+		AA2FD826169BD59E00FA2168 /* nasa-mars.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nasa-mars.png"; sourceTree = "<group>"; };
+		AA2FD827169BD59E00FA2168 /* nasa-mars@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nasa-mars@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +139,10 @@
 			children = (
 				41D32D1A168BB23D008AB3D8 /* mars@2x.png */,
 				41D32D18168BB1D3008AB3D8 /* mars.png */,
+				AA2FD822169BD39A00FA2168 /* marsglobe.png */,
+				AA2FD824169BD3DF00FA2168 /* marsglobe2x.png */,
+				AA2FD826169BD59E00FA2168 /* nasa-mars.png */,
+				AA2FD827169BD59E00FA2168 /* nasa-mars@2x.png */,
 				41D32D0E168ABCA6008AB3D8 /* README */,
 				41D32D03168A9538008AB3D8 /* note.txt */,
 				41AEADB6168A1E270097FE06 /* CodeGrep */,
@@ -318,6 +330,10 @@
 				41D32D0F168ABCA6008AB3D8 /* README in Resources */,
 				41D32D19168BB1D4008AB3D8 /* mars.png in Resources */,
 				41D32D1B168BB23D008AB3D8 /* mars@2x.png in Resources */,
+				AA2FD823169BD39B00FA2168 /* marsglobe.png in Resources */,
+				AA2FD825169BD3DF00FA2168 /* marsglobe2x.png in Resources */,
+				AA2FD828169BD59E00FA2168 /* nasa-mars.png in Resources */,
+				AA2FD829169BD59E00FA2168 /* nasa-mars@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -424,6 +440,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = armv7;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -453,6 +470,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = armv7;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -465,6 +483,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -479,6 +498,7 @@
 				GCC_PREFIX_HEADER = "CodeGrep/CodeGrep-Prefix.pch";
 				INFOPLIST_FILE = "CodeGrep/CodeGrep-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -490,6 +510,7 @@
 				GCC_PREFIX_HEADER = "CodeGrep/CodeGrep-Prefix.pch";
 				INFOPLIST_FILE = "CodeGrep/CodeGrep-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

@@ -18,6 +18,10 @@
 @synthesize searchText;
 @synthesize searchButton;
 
+//
+// Search button has been clicked.
+//
+
 - (IBAction)doSearch:(id)sender
 {
     if ( [self.searchText.text isEqualToString:@""] )
@@ -53,8 +57,8 @@
     if ( [segue.identifier isEqualToString:@"showSearchResult"] )
     {
         NSString * search = [self.searchText.text stringByReplacingOccurrencesOfString:@" " withString:@"+" ];
+        // go to the search result page.
         [segue.destinationViewController initWithSearchString:search];
-        
     }
 }
 

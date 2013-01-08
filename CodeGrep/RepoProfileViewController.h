@@ -1,5 +1,5 @@
 //
-//  RepoDetailsViewController2.h
+//  RepoProfileViewController.h
 //  CodeGrep
 //
 //  Created by Bo Yu on 12/28/12.
